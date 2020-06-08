@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+   
+    
+    
+    
+    
+    
+    </script>
+</head>
+<body >
+    <h1>Math Game</h1>
+    
+    <button onclick="ontime()"  style="position: absolute;left: 380px; top:110px;" id="start">Start</button>
+    <text id="time1" style="position: absolute;left: 660px; top:120px;font-size: 30px;color: aliceblue; "></text>
+
+    <div class="main">
+        <p id="c1"></p>
+
+        <text style="position: absolute; top:120px;left:850px;color:aliceblue;font-size: 30px;" >Score:<text id="s1" style="color: aliceblue;">0</text></text>
+        
+        <div class="inputbox">
+            <div class="firstbox">
+                <input type="text" id="b1">
+            </div>
+            <div class="firstbox" >
+                
+                <select id="oper" onclick="selecting()" > 
+                <option value="q"></option>
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+            </select>
+        
+            </div>
+        <div class="firstbox"><input type="text" id="b2"></div>
+    </div>
+        <div class="answerbox">
+            <input type="text" id="v1">
+        </div>
+   
+        <div class="check">
+            <button onclick="check()">Check Answer</button>
+
+        </div>
+    </div>
+</body>
+<script> 
+        let a=Math.floor(Math.random() * 10);
+        document.getElementById("b1").value=a;
+        let b=Math.floor(Math.random() * 10);
+        document.getElementById("b2").value=b;
+        let c;
+      
+      
+        
+        let score=0;
+        document.getElementById("s1").value=0;
+        document.getElementById("b1").disabled=true;
+        document.getElementById("b2").disabled=true;
+        document.getElementById("v1").disabled=true;
+        let op ;
+        function selecting()
+        {
+           op =document.getElementById("oper").value;
+        console.log(op);
+        switch(op)
+        {
+            case '+':
+            
+                 c=a+b;
+                break;
+            
+            case '-':
+            
+                 c=a-b;
+                break;
+            
+            case '*':
+            
+                 c=a*b;
+            
+            case '/':
+            
+                 c=a/b;
+            
+            default:
+                c1.innerHTML="Select operator(+,-,*,/)";
+        }
+        }
+
+    
+    function ontime(){
+        document.getElementById("b1").disabled=false;
+        document.getElementById("b2").disabled=false;
+        document.getElementById("v1").disabled=false;
+        
+        const mins=1;
+        let time=mins * 60;
+        const timer=document.getElementById("time1");
+        setInterval(updateCountDown,1000);
+        
+        function updateCountDown()
+        {
+
+            const minutes=Math.floor(time/60);
+            let seconds= time % 60;
+            seconds=seconds<10?'0'+seconds:seconds;
+            timer.innerHTML=`${minutes}:${seconds}`;
+       
+            if (time!==0)
+            {
+                time--;
+            }
+            else
+            {
+                document.getElementById("b1").disabled=true;
+                document.getElementById("b2").disabled=true;
+                document.getElementById("v1").disabled=true;
+                c1.innerHTML="Times up,Your final score is "+score;
+                
+            
+            }
+
+        }
+    }
+    
+        function check()
+        {
+            let user=document.getElementById("v1").value;
+            
+            if (user==c)
+            {
+            
+                score=score+10;
+                s1.innerHTML=score;
+                c1.innerHTML="Congrats!!your answer is correct";
+
+
+            }
+            else{
+                score=score-10;
+                s1.innerHTML=score;
+                alert("incorrect answer");
+                }
+                
+    
+            document.getElementById("v1").value="";
+            a=Math.floor(Math.random() * 100);
+            document.getElementById("b1").value=a;
+            b=Math.floor(Math.random() * 100);
+            document.getElementById("b2").value=b;
+            switch(op)
+        {
+            case '+':
+            
+                 c=a+b;
+                break;
+            
+            case '-':
+            
+                 c=a-b;
+                break;
+            
+            case '*':
+            
+                 c=a*b;
+               break;
+            
+            case '/':
+            
+                 c=a/b;
+                break;
+            
+            default:
+                c1.innerHTML="Select operator(+,-,*,/)";
+            
+        }
+            
+        }
+    
+
+</script>
+</html>
